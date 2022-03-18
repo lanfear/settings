@@ -1,5 +1,6 @@
 ﻿param (
     [switch]$SkipVisualStudio = $False
+    [switch]$InstallWorkSoftware = $True
  )
 
 ##### HELPERS #####
@@ -8,10 +9,12 @@ Function Verify-GitInstalled()
 {
     try {
         Invoke-Expression 'git version'
+        Write-Host "git installed, skipping install"
     }
     catch {
-        Write-Host "FATAL: git must be installed and accessible on the path.  Exiting..."
-        exit
+		# may want to do this in advance yourself to customize the install opts
+        Write-Host "git not found... Installing git with default settings..."
+		Invoke-Expression 'cinst -y git --no-progress'
     }
 }
 
@@ -27,48 +30,42 @@ Function Install-Software()
         Invoke-Expression 'cinst -y visualstudio2022-workload-webbuildtools --no-progress'
     }
 
-    Invoke-Expression 'cinst -y 7zip.install --no-progress'
+	if ($InstallWorkSoftware)
+	{
+		Invoke-Expression 'cinst -y selenium-chrome-driver --no-progress'
+		Invoke-Expression 'cinst -y selenium-gecko-driver --no-progress'
+		Invoke-Expression 'cinst -y resharper --no-progress'
+		Invoke-Expression 'cinst -y servicebusexplorer --no-progress'
+		Invoke-Expression 'cinst -y microsoftazurestorageexplorer --no-progress'
+		Invoke-Expression 'cinst -y kubernetes-cli --no-progress'
+		Invoke-Expression 'cinst -y lens --no-progress'
+		# for home if you have o365 sub you probably want the 'professional' (or whatever non-business) suite instead?
+		Invoke-Expression 'cinst -y office365business --no-progress'
+	}
+
+	Verify-GitInstalled
+	
+    Invoke-Expression 'cinst -y chocolateygui --no-progress'
+    Invoke-Expression 'cinst -y 7zip --no-progress'
     Invoke-Expression 'cinst -y beyondcompare --no-progress'
-    Invoke-Expression 'cinst -y selenium-chrome-driver --no-progress'
-    Invoke-Expression 'cinst -y selenium-gecko-driver --no-progress'
-    Invoke-Expression 'cinst -y beyondcompare --no-progress'
-    Invoke-Expression 'cinst -y resharper --no-progress'
-    Invoke-Expression 'cinst -y servicebusexplorer --no-progress'
-    Invoke-Expression 'cinst -y microsoftazurestorageexplorer --no-progress'
     Invoke-Expression 'cinst -y yarn --no-progress'
     Invoke-Expression 'cinst -y vscode --no-progress'
     Invoke-Expression 'cinst -y fiddler --no-progress'
-    Invoke-Expression 'cinst -y chocolateygui --no-progress'
     Invoke-Expression 'cinst -y zoom --no-progress'
-    Invoke-Expression 'cinst -y onedrive --no-progress'
-    Invoke-Expression 'cinst -y notepadplusplus.install --no-progress'
+    Invoke-Expression 'cinst -y notepadplusplus --no-progress'
     Invoke-Expression 'cinst -y lastpass --no-progress'
     Invoke-Expression 'cinst -y slack --no-progress'
-    Invoke-Expression 'cinst -y office365business --no-progress'
-    Invoke-Expression 'cinst -y autohotkey.install --no-progress'
-    Invoke-Expression 'cinst -y sharpkeys --no-progress'
     Invoke-Expression 'cinst -y powertoys --no-progress'
-    Invoke-Expression 'cinst -y dischord.install --no-progress'
-    Invoke-Expression 'cinst -y kubernetes-cli --no-progress'
-    Invoke-Expression 'cinst -y lens --no-progress'
+    Invoke-Expression 'cinst -y dischord --no-progress'
     Invoke-Expression 'cinst -y putty --no-progress'
     Invoke-Expression 'cinst -y filezilla --no-progress'
 	
-    ## DO I NEED THIS?
-    # $SeleniumPathLocations = '%systemdrive%\bin\selenium\;%systemdrive%\tools\selenium'
-    # if (([Environment]::GetEnvironmentVariable("Path") | Out-String) -notmatch "$([RegEx]::Escape($SeleniumPathLocations))")
-    # {
-    #     Write-Host "Adding selenium driver install location to path"
-    #     [Environment]::SetEnvironmentVariable("Path", $env:Path + ";%systemdrive%\bin\selenium\;%systemdrive%\tools\selenium", [EnvironmentVariableTarget]::Machine)
-    # }
+	# optional, for my push-to-talk script setup
+    Invoke-Expression 'cinst -y autohotkey --no-progress'
+    Invoke-Expression 'cinst -y sharpkeys --no-progress'
 }
 
 ##### MAIN #####
-
-Write-Host
-Write-Host "Verifying git Is Installed"
-Write-Host "=========================="
-Verify-GitInstalled
 
 Write-Host
 Write-Host "Installing Software"
