@@ -1,5 +1,5 @@
 ﻿param (
-    [switch]$SkipVisualStudio = $False
+    [switch]$SkipVisualStudio = $False,
     [switch]$InstallWorkSoftware = $True
  )
 
