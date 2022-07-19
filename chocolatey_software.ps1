@@ -47,6 +47,9 @@ Function Install-Software()
 	Verify-GitInstalled
 	
     Invoke-Expression 'cinst -y chocolateygui --no-progress'
+    Invoke-Expression 'cinst -y powershell-core --install-arguments=\'"ADD_FILE_CONTEXT_MENU_RUNPOWERSHELL=1 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=1"\' --no-progress'
+    Invoke-Expression 'cinst -y az.powershell --params="/core /desktop" --no-progress'
+    Invoke-Expression 'cinst -y azure-cli --no-progress'
     Invoke-Expression 'cinst -y 7zip --no-progress'
     Invoke-Expression 'cinst -y beyondcompare --no-progress'
     Invoke-Expression 'cinst -y yarn --no-progress'
