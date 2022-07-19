@@ -15,9 +15,9 @@ Function Verify-GitInstalled()
         Write-Host "git installed, skipping install"
     }
     catch {
-		# may want to do this in advance yourself to customize the install opts
+        # may want to do this in advance yourself to customize the install opts
         Write-Host "git not found... Installing git with default settings..."
-		Invoke-Expression 'cinst -y git --no-progress'
+        Invoke-Expression 'cinst -y git --no-progress'
     }
 }
 
@@ -33,22 +33,22 @@ Function Install-Software()
         Invoke-Expression 'cinst -y visualstudio2022-workload-webbuildtools --no-progress'
     }
 
-	if ($InstallWorkSoftware)
-	{
-		Invoke-Expression 'cinst -y selenium-chrome-driver --no-progress'
-		Invoke-Expression 'cinst -y selenium-gecko-driver --no-progress'
-		Invoke-Expression 'cinst -y resharper --no-progress'
-		Invoke-Expression 'cinst -y servicebusexplorer --no-progress'
-		Invoke-Expression 'cinst -y microsoftazurestorageexplorer --no-progress'
-		Invoke-Expression 'cinst -y kubernetes-cli --no-progress'
-		Invoke-Expression 'cinst -y lens --no-progress'
-		# for home if you have o365 sub you probably want the 'professional' (or whatever non-business) suite instead?
-		Invoke-Expression 'cinst -y office365business --no-progress'
-		Invoke-Expression 'cinst -y git-lfs --no-progress'
-	}
+    if ($InstallWorkSoftware)
+    {
+        Invoke-Expression 'cinst -y selenium-chrome-driver --no-progress'
+        Invoke-Expression 'cinst -y selenium-gecko-driver --no-progress'
+        Invoke-Expression 'cinst -y resharper --no-progress'
+        Invoke-Expression 'cinst -y servicebusexplorer --no-progress'
+        Invoke-Expression 'cinst -y microsoftazurestorageexplorer --no-progress'
+        Invoke-Expression 'cinst -y kubernetes-cli --no-progress'
+        Invoke-Expression 'cinst -y lens --no-progress'
+        # for home if you have o365 sub you probably want the 'professional' (or whatever non-business) suite instead?
+        Invoke-Expression 'cinst -y office365business --no-progress'
+        Invoke-Expression 'cinst -y git-lfs --no-progress'
+    }
 
-	Verify-GitInstalled
-	
+    Verify-GitInstalled
+    
     Invoke-Expression 'cinst -y chocolateygui --no-progress'
     Invoke-Expression 'cinst -y powershell-core --install-arguments=''"ADD_FILE_CONTEXT_MENU_RUNPOWERSHELL=1 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=1"'' --no-progress'
     Invoke-Expression 'cinst -y az.powershell --params="/core /desktop" --no-progress'
@@ -68,8 +68,9 @@ Function Install-Software()
     Invoke-Expression 'cinst -y putty --no-progress'
     Invoke-Expression 'cinst -y filezilla --no-progress'
     Invoke-Expression 'cinst -y steam-client --no-progress'
-	
-	# optional, for my push-to-talk script setup
+    Invoke-Expression 'cinst -y ngrok --no-progress'
+    
+    # optional, for my push-to-talk script setup
     Invoke-Expression 'cinst -y autohotkey --no-progress'
     Invoke-Expression 'cinst -y sharpkeys --no-progress'
 }
