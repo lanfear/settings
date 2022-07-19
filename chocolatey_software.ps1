@@ -66,6 +66,7 @@ Function Install-Software()
     Invoke-Expression 'cinst -y discord --no-progress'
     Invoke-Expression 'cinst -y putty --no-progress'
     Invoke-Expression 'cinst -y filezilla --no-progress'
+    Invoke-Expression 'cinst -y steam-client --no-progress'
 	
 	# optional, for my push-to-talk script setup
     Invoke-Expression 'cinst -y autohotkey --no-progress'
