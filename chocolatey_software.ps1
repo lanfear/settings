@@ -1,4 +1,7 @@
-﻿param (
+﻿# RUN POWERSHELL AS ADMIN, execute this command before the script itself
+# Set-ExecutionPolicy Unrestricted
+
+param (
     [switch]$SkipVisualStudio = $False,
     [switch]$InstallWorkSoftware = $True
  )
@@ -60,7 +63,7 @@ Function Install-Software()
     Invoke-Expression 'cinst -y lastpass --no-progress'
     Invoke-Expression 'cinst -y slack --no-progress'
     Invoke-Expression 'cinst -y powertoys --no-progress'
-    Invoke-Expression 'cinst -y dischord --no-progress'
+    Invoke-Expression 'cinst -y discord --no-progress'
     Invoke-Expression 'cinst -y putty --no-progress'
     Invoke-Expression 'cinst -y filezilla --no-progress'
 	
