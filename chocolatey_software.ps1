@@ -54,6 +54,7 @@ Function Install-Software()
     Invoke-Expression 'cinst -y az.powershell --params="/core /desktop" --no-progress'
     Invoke-Expression 'cinst -y azure-cli --no-progress'
     Invoke-Expression 'cinst -y 7zip --no-progress'
+    Invoke-Expression 'cinst -y nvm --no-progress'
     Invoke-Expression 'cinst -y beyondcompare --no-progress'
     Invoke-Expression 'cinst -y yarn --no-progress'
     Invoke-Expression 'cinst -y vscode --no-progress'
