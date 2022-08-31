@@ -45,6 +45,10 @@ Function Install-Software()
         # for home if you have o365 sub you probably want the 'professional' (or whatever non-business) suite instead?
         Invoke-Expression 'cinst -y office365business --no-progress'
         Invoke-Expression 'cinst -y git-lfs --no-progress'
+        # not sure if you need both of these to get localdb, i tried to test but didnt test right when installing sequentially, 
+        # db-server is at (localdb)\MSSqlLocalDb with integrated security after installation is complete 
+        Invoke-Expression 'cinst -y sql-server-express --no-progress'
+        Invoke-Expression 'cinst -y sqllocaldb --no-progress'
     }
 
     Verify-GitInstalled
@@ -61,7 +65,8 @@ Function Install-Software()
     Invoke-Expression 'cinst -y fiddler --no-progress'
     Invoke-Expression 'cinst -y zoom --no-progress'
     Invoke-Expression 'cinst -y notepadplusplus --no-progress'
-    Invoke-Expression 'cinst -y lastpass --no-progress'
+    Invoke-Expression 'cinst -y 1password --no-progress'
+    #Invoke-Expression 'cinst -y lastpass --no-progress'
     Invoke-Expression 'cinst -y slack --no-progress'
     Invoke-Expression 'cinst -y powertoys --no-progress'
     Invoke-Expression 'cinst -y discord --no-progress'
