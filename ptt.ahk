@@ -10,6 +10,7 @@
 
 ; the current device-id detected from script above
 MIXERID = 7
+MIXERID = 13
 HOTKEY = NumpadEnter
 SHOWUNMUTE = 0
 
