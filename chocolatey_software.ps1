@@ -74,6 +74,8 @@ Function Install-Software()
     Invoke-Expression 'cinst -y filezilla --no-progress'
     Invoke-Expression 'cinst -y steam-client --no-progress'
     Invoke-Expression 'cinst -y ngrok --no-progress'
+    Invoke-Expression 'cinst -y insomnia-rest-api-client --no-progress'
+    Invoke-Expression 'cinst -y rancher-desktop --no-progress'
     
     # optional, for my push-to-talk script setup
     Invoke-Expression 'cinst -y autohotkey --no-progress'
