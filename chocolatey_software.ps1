@@ -57,6 +57,8 @@ Function Install-Software()
     
     Invoke-Expression 'cinst -y chocolateygui --no-progress'
     Invoke-Expression 'cinst -y powershell-core --install-arguments=''"ADD_FILE_CONTEXT_MENU_RUNPOWERSHELL=1 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=1"'' --no-progress'
+    # this may be nice someday as a replacement for git bash, but the autoinstall currently fails in cases due to environment, this should be handled better
+    #Invoke-Expression 'cinst -y wsl2 --no-progress'
     Invoke-Expression 'cinst -y az.powershell --params="/core /desktop" --no-progress'
     Invoke-Expression 'cinst -y azure-cli --no-progress'
     Invoke-Expression 'cinst -y 7zip --no-progress'
