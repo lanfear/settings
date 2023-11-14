@@ -43,7 +43,7 @@ Function Install-Software()
         Invoke-Expression 'cinst -y servicebusexplorer --no-progress'
         Invoke-Expression 'cinst -y microsoftazurestorageexplorer --no-progress'
         Invoke-Expression 'cinst -y kubernetes-cli --no-progress'
-        Invoke-Expression 'cinst -y lens --no-progress'
+        Invoke-Expression 'cinst -y openlens --params="/ALLUSERS" --no-progress'
         # for home if you have o365 sub you probably want the 'professional' (or whatever non-business) suite instead?
         Invoke-Expression 'cinst -y office365business --no-progress'
         Invoke-Expression 'cinst -y git-lfs --no-progress'
