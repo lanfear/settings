@@ -24,6 +24,8 @@ Function Verify-GitInstalled()
 Function Install-Software()
 {
     Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+	
+	Invoke-Expression 'choco feature enable -n=useRememberedArgumentsForUpgrades'
 
     if (-not $SkipVisualStudio)
     {
