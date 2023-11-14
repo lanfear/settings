@@ -70,6 +70,7 @@ Function Install-Software()
     Invoke-Expression 'cinst -y zoom --no-progress'
     Invoke-Expression 'cinst -y notepadplusplus --no-progress'
     Invoke-Expression 'cinst -y 1password --no-progress'
+    Invoke-Expression 'cinst -y vlc -no-progress'
     #Invoke-Expression 'cinst -y lastpass --no-progress'
     Invoke-Expression 'cinst -y slack --no-progress'
     Invoke-Expression 'cinst -y powertoys --no-progress'
