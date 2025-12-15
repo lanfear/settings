@@ -65,7 +65,6 @@ Function Install-Software()
     Invoke-Expression 'choco install  -y 7zip --no-progress'
     Invoke-Expression 'choco install  -y nvm --no-progress'
     Invoke-Expression 'choco install  -y beyondcompare --no-progress'
-    Invoke-Expression 'choco install  -y yarn --no-progress'
     Invoke-Expression 'choco install  -y vscode --no-progress'
     Invoke-Expression 'choco install  -y fiddler --no-progress'
     Invoke-Expression 'choco install  -y zoom --no-progress'
