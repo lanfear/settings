@@ -28,6 +28,8 @@ Function Install-Software()
 	
     Invoke-Expression 'choco feature enable -n=useRememberedArgumentsForUpgrades'
 
+    Verify-GitInstalled
+
     if (-not $SkipVisualStudio)
     {
         Invoke-Expression 'choco install  -y visualstudio2026enterprise --no-progress'
@@ -58,8 +60,6 @@ Function Install-Software()
         Invoke-Expression 'choco install  -y sqllocaldb --no-progress'
         Invoke-Expression 'choco install  -y rancher-desktop --no-progress'
     }
-
-    Verify-GitInstalled
     
     Invoke-Expression 'choco install  -y chocolateygui --no-progress'
     Invoke-Expression 'choco install  -y powershell-core --install-arguments=''"ADD_FILE_CONTEXT_MENU_RUNPOWERSHELL=1 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=1"'' --no-progress'
