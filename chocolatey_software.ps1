@@ -3,7 +3,8 @@
 
 param (
     [switch]$SkipVisualStudio = $False,
-    [switch]$InstallWorkSoftware = $True
+    [switch]$InstallWorkSoftware = $True,
+    [switch]$InstallOffice = $False,
  )
 
 ##### HELPERS #####
@@ -25,7 +26,7 @@ Function Install-Software()
 {
     Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 	
-	Invoke-Expression 'choco feature enable -n=useRememberedArgumentsForUpgrades'
+    Invoke-Expression 'choco feature enable -n=useRememberedArgumentsForUpgrades'
 
     if (-not $SkipVisualStudio)
     {
@@ -33,6 +34,12 @@ Function Install-Software()
         Invoke-Expression 'choco install  -y visualstudio2026-workload-azure --no-progress'
         Invoke-Expression 'choco install  -y visualstudio2026-workload-netweb --no-progress'
         Invoke-Expression 'choco install  -y visualstudio2026-workload-webbuildtools --no-progress'
+    }
+
+    if ($InstallOffice)
+    {
+        # for home if you have o365 sub you probably want the 'professional' (or whatever non-business) suite instead?
+        Invoke-Expression 'choco install  -y office365business --no-progress'
     }
 
     if ($InstallWorkSoftware)
@@ -44,14 +51,12 @@ Function Install-Software()
         Invoke-Expression 'choco install  -y microsoftazurestorageexplorer --no-progress'
         Invoke-Expression 'choco install  -y kubernetes-cli --no-progress'
         Invoke-Expression 'choco install  -y openlens --params="/ALLUSERS" --no-progress'
-        # for home if you have o365 sub you probably want the 'professional' (or whatever non-business) suite instead?
-        Invoke-Expression 'choco install  -y office365business --no-progress'
         Invoke-Expression 'choco install  -y git-lfs --no-progress'
         # not sure if you need both of these to get localdb, i tried to test but didnt test right when installing sequentially, 
         # db-server is at (localdb)\MSSqlLocalDb with integrated security after installation is complete 
         Invoke-Expression 'choco install  -y sql-server-express --no-progress'
         Invoke-Expression 'choco install  -y sqllocaldb --no-progress'
-		Invoke-Expression 'choco install  -y rancher-desktop --no-progress'
+        Invoke-Expression 'choco install  -y rancher-desktop --no-progress'
     }
 
     Verify-GitInstalled
