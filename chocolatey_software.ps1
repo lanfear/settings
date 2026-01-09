@@ -2,9 +2,9 @@
 # Set-ExecutionPolicy Unrestricted
 
 param (
-    [switch]$SkipVisualStudio = $False,
-    [switch]$InstallWorkSoftware = $True,
-    [switch]$InstallOffice = $False,
+    [switch]$SkipVisualStudio = $True,
+    [switch]$InstallWorkSoftware = $False,
+    [switch]$InstallOffice = $False
  )
 
 ##### HELPERS #####
