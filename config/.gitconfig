@@ -1,0 +1,62 @@
+[alias]
+   ahead = log --oneline --graph origin..head
+   ahead1 = "!git ahead `git st | grep modified | cut -d':' -f2`"
+   blame1 = "!git blame HEAD `git st | grep modified | cut -d':' -f2`"
+   st = status
+   co = checkout
+   cleanup = !find . -name '*.orig' -delete && find . -regextype posix-egrep -regex '.*/.*_LOCAL_.*|.*/.*_BASE_.*|.*/.*_REMOTE_.*|.*/.*_BACKUP_.*' -delete
+   cm = commit -m
+   cma = commit -a -m
+   br = branch
+   df = diff
+   ls = ls-files
+   sh = stash
+   sha = stash apply
+   shp = stash pop
+   shl = stash list
+   mg = merge
+   ph = push -u
+   la = log --graph --pretty=format:'%C(white)%h%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset'
+   # this would prune local branches not on remote
+   #git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -D
+   brp = "!git branch --merged main | grep -v '^[ *]*main$' | xargs echo"
+   brpf = "!git branch --merged main | grep -v '^[ *]*main$' | xargs git branch -d"
+   brd = "!git branch --sort=-committerdate"
+
+[diff]
+   # bcomp is work-only
+   tool = bcomp
+[difftool "bcomp"]
+   cmd = "C:/program\\ files\\/beyond\\ compare\\ 4/bcomp.exe \"$LOCAL\" \"$REMOTE\""
+[help]
+   autocorrect = 1
+[merge]
+   # bcomp is work-only
+   tool = bcomp
+[mergetool]
+   prompt = false
+[mergetool "bcomp"]
+   cmd = "C:/Program\\ Files\\/Beyond\\ Compare\\ 4/Bcomp.exe \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\""
+   keepBackup = false
+   trustExitCode = false
+[push]
+        default = nothing
+[core]
+        autocrlf = true
+[rebase]
+        autosquash = true
+[rerere]
+        enabled = false
+[winUpdater]
+        recentlySeenVersion =
+[user]
+    name = Joe Deming
+    email = ##FILLTHISIN##
+#[credential]
+#    helper = manager-core
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
