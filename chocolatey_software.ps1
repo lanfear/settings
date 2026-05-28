@@ -43,23 +43,6 @@ Function Install-Software()
         # for home if you have o365 sub you probably want the 'professional' (or whatever non-business) suite instead?
         Invoke-Expression 'choco install  -y office365business --no-progress'
     }
-
-    if ($InstallWorkSoftware)
-    {
-        Invoke-Expression 'choco install  -y selenium-chrome-driver --no-progress'
-        Invoke-Expression 'choco install  -y selenium-gecko-driver --no-progress'
-        #Invoke-Expression 'choco install  -y resharper --no-progress'
-        Invoke-Expression 'choco install  -y servicebusexplorer --no-progress'
-        Invoke-Expression 'choco install  -y microsoftazurestorageexplorer --no-progress'
-        Invoke-Expression 'choco install  -y kubernetes-cli --no-progress'
-        Invoke-Expression 'choco install  -y openlens --params="/ALLUSERS" --no-progress'
-        Invoke-Expression 'choco install  -y git-lfs --no-progress'
-        # not sure if you need both of these to get localdb, i tried to test but didnt test right when installing sequentially, 
-        # db-server is at (localdb)\MSSqlLocalDb with integrated security after installation is complete 
-        Invoke-Expression 'choco install  -y sql-server-express --no-progress'
-        Invoke-Expression 'choco install  -y sqllocaldb --no-progress'
-        Invoke-Expression 'choco install  -y rancher-desktop --no-progress'
-    }
     
     Invoke-Expression 'choco install  -y chocolateygui --no-progress'
     Invoke-Expression 'choco install  -y powershell-core --install-arguments=''"ADD_FILE_CONTEXT_MENU_RUNPOWERSHELL=1 ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 REGISTER_MANIFEST=1 ENABLE_PSREMOTING=1"'' --no-progress'
@@ -85,11 +68,28 @@ Function Install-Software()
     Invoke-Expression 'choco install  -y steam-client --no-progress'
     Invoke-Expression 'choco install  -y ngrok --no-progress'
     Invoke-Expression 'choco install  -y insomnia-rest-api-client --no-progress'
-    Invoke-Expression 'choco install  -y windirstat --no-progress'	
+    Invoke-Expression 'choco install  -y windirstat --no-progress'
+    Invoke-Expression 'choco install  -y wsl2 --no-progress'    
     
     # optional, for my push-to-talk script setup
     Invoke-Expression 'choco install  -y autohotkey --no-progress'
     Invoke-Expression 'choco install  -y sharpkeys --no-progress'
+
+    if ($InstallWorkSoftware) {
+        Invoke-Expression 'choco install  -y selenium-chrome-driver --no-progress'
+        Invoke-Expression 'choco install  -y selenium-gecko-driver --no-progress'
+        #Invoke-Expression 'choco install  -y resharper --no-progress'
+        Invoke-Expression 'choco install  -y servicebusexplorer --no-progress'
+        Invoke-Expression 'choco install  -y microsoftazurestorageexplorer --no-progress'
+        Invoke-Expression 'choco install  -y kubernetes-cli --no-progress'
+        Invoke-Expression 'choco install  -y openlens --params="/ALLUSERS" --no-progress'
+        Invoke-Expression 'choco install  -y git-lfs --no-progress'
+        # not sure if you need both of these to get localdb, i tried to test but didnt test right when installing sequentially, 
+        # db-server is at (localdb)\MSSqlLocalDb with integrated security after installation is complete 
+        Invoke-Expression 'choco install  -y sql-server-express --no-progress'
+        Invoke-Expression 'choco install  -y sqllocaldb --no-progress'
+        Invoke-Expression 'choco install  -y rancher-desktop --no-progress'
+    }
 }
 
 ##### MAIN #####
